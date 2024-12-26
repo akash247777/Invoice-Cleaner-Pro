@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd 
 import streamlit as st
 
 # Streamlit app title and instructions
@@ -16,6 +16,15 @@ if uploaded_files:
 
     for uploaded_file in uploaded_files:
         try:
+            # Skip already processed files
+            if uploaded_file.name.startswith("processed_"):
+                st.write(f"{uploaded_file.name} is already processed. No modifications made.")
+                processed_files.append({
+                    "file_name": uploaded_file.name,
+                    "file_data": uploaded_file.read()
+                })
+                continue
+
             # Load each uploaded file
             if uploaded_file.name.endswith('.csv'):
                 df = pd.read_csv(uploaded_file, dtype=str)  # Treat all columns as strings
@@ -34,7 +43,7 @@ if uploaded_files:
                 df['InvNo'] = df['InvNo'].apply(lambda x: f'="{x}"')
 
                 # Save the processed data as a CSV file
-                processed_file_name = f"processed_{uploaded_file.name}.csv"
+                processed_file_name = f"processed_{uploaded_file.name}"
                 df.to_csv(processed_file_name, index=False, quoting=1, quotechar='"', sep=',', encoding="utf-8")
 
                 # Add the file to the download list
