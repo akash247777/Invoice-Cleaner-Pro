@@ -1,15 +1,6 @@
 import pandas as pd 
 import streamlit as st
 
-# Inject custom CSS to hide the cat symbol (or any other symbol)
-st.markdown("""
-    <style>
-        .cat-icon {
-            display: none;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
 # Streamlit app title and instructions
 st.title("Process 'InvNo' Column in Multiple Files")
 st.write("""
