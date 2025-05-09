@@ -1,4 +1,4 @@
-import 
+import pandas as pd
 import streamlit as st
 
 # Streamlit app title and instructions
