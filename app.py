@@ -17,7 +17,7 @@ if uploaded_files:
     for uploaded_file in uploaded_files:
         try:
             # Skip already processed files
-            if uploaded_file.name.startswith("processed_"):
+            if uploaded_file.name.startswit("processed_"):
                 st.write(f"{uploaded_file.name} is already processed. No modifications made.")
                 processed_files.append({
                     "file_name": uploaded_file.name,
